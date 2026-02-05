@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задачи по верстке</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        hr {
+            margin: 60px 0;
+            border: none;
+            border-top: 2px solid #ddd;
+        }
+        .gallery {
+            display: grid;
+            gap: 24px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+        .gallery-item::before {
+            content: "";
+            display: block;
+            padding-top: 133.33%;
+        }
+        .gallery-item img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        @media (min-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        .bouncing-icon {
+            font-size: 80px;
+            display: inline-block;
+            animation: bounce 0.6s ease-in-out 3;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+        .bouncing-icon:hover {
+            transform: scale(1.2);
+            transition: transform 0.3s ease;
+        }
+        .feedback-form {
+            max-width: 500px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .rating-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .rating-group input {
+            display: none;
+        }
+        .rating-group label {
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .rating-group label:hover,
+        .rating-group input:checked ~ label {
+            color: #ff9800;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>1. Адаптивная галерея изображений (CSS Grid)</h1>
+    <div class="gallery">
+        <div class="gallery-item"><img src="images/nn4.jpg" alt="Фото 1"></div>
+        <div class="gallery-item"><img src="images/nn3.jpg" alt="Фото 2"></div>
+        <div class="gallery-item"><img src="images/nn.webp" alt="Фото 3"></div>
+        <div class="gallery-item"><img src="images/nn1.jfif" alt="Фото 4"></div>
+        <div class="gallery-item"><img src="images/nn2.jfif" alt="Фото 5"></div>
+        <div class="gallery-item"><img src="images/i.webp" alt="Фото 6"></div>
+    </div>
+    <hr>
+    <h1>2. Прыгающая иконка</h1>
+    <div class="bouncing-icon">🚀</div>
+    <hr>
+    <h1>3. Форма обратной связи</h1>
+    <form class="feedback-form" action="#" method="POST">
+        <div class="form-group">
+            <label for="name">ФИО</label>
+            <input type="text" id="name" placeholder="Иванов Иван Иванович" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@mail.ru" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Дата обращения</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+            <label>Оценка от 1 до 5</label>
+            <div class="rating-group">
+                <input type="radio" name="rating" id="star5" value="5" required>
+                <label for="star5">★</label>
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4">★</label>
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3">★</label>
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2">★</label>
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1">★</label>
+            </div>
+        </div>
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>
